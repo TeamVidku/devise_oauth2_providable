@@ -1,0 +1,6 @@
+en:
+  devise:
+    failure:
+      invalid_client: "Invalid client credentials."
+      invalid_refresh_token: "Invalid refresh token."
+      invalid_auth_code: "Invalid authorization code."

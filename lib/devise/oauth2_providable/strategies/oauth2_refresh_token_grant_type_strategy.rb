@@ -12,7 +12,7 @@ module Devise
           env[Devise::Oauth2Providable::REFRESH_TOKEN_ENV_REF] = refresh_token
           success! refresh_token.user
         else
-          oauth_error! :invalid_grant, 'invalid refresh token'
+          oauth_error! :invalid_grant, I18n.t("devise.failure.invalid_refresh_token")
         end
       end
     end

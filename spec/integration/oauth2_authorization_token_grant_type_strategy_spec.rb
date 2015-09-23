@@ -54,7 +54,7 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         it 'returns json' do
           expected = {
             :error => 'invalid_grant',
-            :error_description => 'invalid authorization code request'
+            :error_description => 'Invalid authorization code.'
           }
           response.body.should match_json(expected)
         end
@@ -78,7 +78,7 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         it 'returns json' do
           expected = {
             :error => 'invalid_grant',
-            :error_description => 'invalid authorization code request'
+            :error_description => 'Invalid authorization code.'
           }
           response.body.should match_json(expected)
         end
@@ -102,7 +102,7 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         it 'returns json' do
           expected = {
             :error => 'invalid_client',
-            :error_description => 'invalid client credentials'
+            :error_description => 'Invalid client credentials.'
           }
           response.body.should match_json(expected)
         end
@@ -126,7 +126,7 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         it 'returns json' do
           expected = {
             :error => 'invalid_client',
-            :error_description => 'invalid client credentials'
+            :error_description => 'Invalid client credentials.'
           }
           response.body.should match_json(expected)
         end

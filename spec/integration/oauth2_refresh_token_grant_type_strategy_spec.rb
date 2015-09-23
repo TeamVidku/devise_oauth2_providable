@@ -53,7 +53,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
         it 'returns json' do
           expected = {
             :error => 'invalid_grant',
-            :error_description => 'invalid refresh token'
+            :error_description => 'Invalid refresh token.'
           }
           response.body.should match_json(expected)
         end
@@ -79,7 +79,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
           refresh_token = @refresh_token
           expected = {
             :error => 'invalid_grant',
-            :error_description => 'invalid refresh token'
+            :error_description => 'Invalid refresh token.'
           }
           response.body.should match_json(expected)
         end
@@ -103,7 +103,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
         it 'returns json' do
           expected = {
             :error => 'invalid_client',
-            :error_description => 'invalid client credentials'
+            :error_description => 'Invalid client credentials.'
           }
           response.body.should match_json(expected)
         end
@@ -127,7 +127,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
         it 'returns json' do
           expected = {
             :error => 'invalid_client',
-            :error_description => 'invalid client credentials'
+            :error_description => 'Invalid client credentials.'
           }
           response.body.should match_json(expected)
         end

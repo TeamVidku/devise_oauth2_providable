@@ -15,7 +15,7 @@ module Devise
         else
           keys_string = keys.join(I18n.translate(:"support.array.words_connector"))
           message = resource ? resource.unauthenticated_message : :invalid
-          oauth_error! :invalid_grant, I18n.t("devise.failure.#{resource.unauthenticated_message}", authentication_keys: keys_string)
+          oauth_error! :invalid_grant, I18n.t("devise.failure.#{message}", authentication_keys: keys_string)
         end
       end
     end

@@ -8,7 +8,7 @@ class Devise::Oauth2Providable::TokensController < ApplicationController
   end
 
   def create
-    @refresh_token = oauth2_current_refresh_token || oauth2_current_client.refresh_tokens.create!(:user => current_user)
+    @refresh_token = oauth2_current_client.refresh_tokens.create!(:user => current_user)
     @access_token = @refresh_token.access_tokens.create!(:client => oauth2_current_client, :user => current_user)
     yield if block_given?
     render :json => @access_token.token_response

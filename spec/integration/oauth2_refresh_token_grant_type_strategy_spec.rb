@@ -25,7 +25,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
           expected = {
             :token_type => 'bearer',
             :expires_in => 899,
-            :refresh_token => refresh_token.token,
+            :refresh_token => token.refresh_token.token,
             :access_token => token.token
           }
           response.body.should match_json(expected)

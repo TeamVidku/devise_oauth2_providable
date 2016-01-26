@@ -1,6 +1,6 @@
 class Devise::Oauth2Providable::TokensController < ApplicationController
-  before_filter :reset_session!
-  before_filter :authenticate_user!
+  prepend_before_filter :reset_session!
+  prepend_before_filter :authenticate_user!
   skip_before_filter :verify_authenticity_token, :only => :create
 
   rescue_from Rack::OAuth2::Server::Authorize::BadRequest do |e|

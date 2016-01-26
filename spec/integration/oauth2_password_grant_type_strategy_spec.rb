@@ -65,7 +65,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         it { response.content_type.should == 'application/json'  }
         it 'returns json' do
           expected = {
-            :error_description => "invalid client credentials",
+            :error_description => "Invalid client credentials.",
             :error => "invalid_client"
           }
           response.body.should match_json(expected)
@@ -87,7 +87,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         it { response.content_type.should == 'application/json'  }
         it 'returns json' do
           expected = {
-            :error_description => "invalid client credentials",
+            :error_description => "Invalid client credentials.",
             :error => "invalid_client"
           }
           response.body.should match_json(expected)
@@ -112,7 +112,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         it { response.content_type.should == 'application/json'  }
         it 'returns json' do
           expected = {
-            :error_description => "invalid password authentication request",
+            :error_description => "Invalid email or password.",
             :error => "invalid_grant"
           }
           response.body.should match_json(expected)
@@ -137,7 +137,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         it { response.content_type.should == 'application/json'  }
         it 'returns json' do
           expected = {
-            :error_description => "invalid client credentials",
+            :error_description => "Invalid client credentials.",
             :error => "invalid_client"
           }
           response.body.should match_json(expected)
@@ -162,7 +162,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         it { response.content_type.should == 'application/json'  }
         it 'returns json' do
           expected = {
-            :error_description => "invalid client credentials",
+            :error_description => "Invalid client credentials.",
             :error => "invalid_client"
           }
           response.body.should match_json(expected)

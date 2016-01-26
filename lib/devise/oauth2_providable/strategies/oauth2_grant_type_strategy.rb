@@ -27,14 +27,13 @@ module Devise
           env[Devise::Oauth2Providable::CLIENT_ENV_REF] = client
           authenticate_grant_type(client)
         else
-          oauth_error! :invalid_client, 'invalid client credentials'
+          oauth_error! :invalid_client
         end
       end
 
-      # return custom error response in accordance with the oauth spec
-      # see http://tools.ietf.org/html/draft-ietf-oauth-v2-16#section-4.3
       def oauth_error!(error_code = :invalid_request, description = nil)
         body = {:error => error_code}
+        description = I18n.t("devise.failure.#{error_code}") unless description
         body[:error_description] = description if description
         custom! [400, {'Content-Type' => 'application/json'}, [body.to_json]]
         throw :warden

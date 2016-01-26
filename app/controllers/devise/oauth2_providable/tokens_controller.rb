@@ -8,8 +8,9 @@ class Devise::Oauth2Providable::TokensController < ApplicationController
   end
 
   def create
-    @refresh_token = oauth2_current_refresh_token || oauth2_current_client.refresh_tokens.create!(:user => current_user)
+    @refresh_token = oauth2_current_client.refresh_tokens.create!(:user => current_user)
     @access_token = @refresh_token.access_tokens.create!(:client => oauth2_current_client, :user => current_user)
+    yield if block_given?
     render :json => @access_token.token_response
   end
 
@@ -17,6 +18,7 @@ class Devise::Oauth2Providable::TokensController < ApplicationController
     raise Rack::OAuth2::Server::Authorize::BadRequest unless current_user && oauth2_current_client
     oauth2_current_client.expire_tokens_for_user(current_user)
     current_user.sign_out if current_user.respond_to?(:sign_out)
+    yield if block_given?
     head :no_content
   end
 

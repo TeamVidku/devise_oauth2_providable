@@ -8,11 +8,14 @@ module Devise
       end
 
       def authenticate_grant_type(client)
-        resource = mapping.to.find_for_authentication(mapping.to.authentication_keys.first => params[:username])
+        keys = mapping.to.authentication_keys
+        resource = mapping.to.find_for_database_authentication(keys.first => params[:username])
         if validate(resource) { resource.valid_password?(params[:password]) }
           success! resource
         else
-          oauth_error! :invalid_grant, 'invalid password authentication request'
+          keys_string = keys.join(I18n.translate(:"support.array.words_connector"))
+          message = resource ? resource.unauthenticated_message : :invalid
+          oauth_error! :invalid_grant, I18n.t("devise.failure.#{message}", authentication_keys: keys_string)
         end
       end
     end

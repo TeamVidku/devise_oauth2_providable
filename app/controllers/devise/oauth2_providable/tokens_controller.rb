@@ -17,6 +17,7 @@ class Devise::Oauth2Providable::TokensController < ApplicationController
   def destroy
     raise Rack::OAuth2::Server::Authorize::BadRequest unless current_user && oauth2_current_client
     oauth2_current_client.expire_tokens_for_user(current_user)
+    current_user.sign_out if current_user.respond_to?(:sign_out)
     yield if block_given?
     head :no_content
   end

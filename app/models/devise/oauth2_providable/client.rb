@@ -11,6 +11,7 @@ class Devise::Oauth2Providable::Client < ActiveRecord::Base
 
   def expire_tokens_for_user(user)
     access_tokens.where(user_id: user.id).where('expires_at > ?', Time.zone.now).update_all(expires_at: Time.zone.now)
+    refresh_tokens.where(user_id: user.id).where('expires_at > ?', Time.zone.now).update_all(expires_at: Time.zone.now)
   end
 
   private

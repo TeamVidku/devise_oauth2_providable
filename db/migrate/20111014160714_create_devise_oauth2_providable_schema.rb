@@ -6,6 +6,7 @@ class CreateDeviseOauth2ProvidableSchema < ActiveRecord::Migration
       t.string :website
       t.string :identifier
       t.string :secret
+      t.string :scopes
       t.timestamps
     end
 

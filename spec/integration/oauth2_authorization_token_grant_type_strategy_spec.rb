@@ -38,7 +38,6 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         let(:client) { create :client }
         before do
           timenow = 2.days.from_now
-          Time.should_receive(:now).and_return(timenow)
           allow(Time).to receive(:now).and_return(timenow)
           @authorization_code = user.authorization_codes.create(:client => client)
           params = {

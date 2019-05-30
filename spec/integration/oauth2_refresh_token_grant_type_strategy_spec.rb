@@ -15,7 +15,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
             :refresh_token => @refresh_token.token
           }
 
-          post '/oauth2/token', params
+          post '/oauth2/token', params: params
         end
         it { response.code.to_i.should == 200 }
         it { response.content_type.should == 'application/json' }
@@ -26,6 +26,8 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
             :token_type => 'bearer',
             :expires_in => 899,
             :refresh_token => token.refresh_token.token,
+            :scope => client.scopes,
+            :user_id => user.id,
             :access_token => token.token
           }
           response.body.should match_json(expected)
@@ -46,7 +48,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
           }
           allow(Time).to receive(:now).and_return(timenow + 2.months)
 
-          post '/oauth2/token', params
+          post '/oauth2/token', params: params
         end
         it { response.code.to_i.should == 400 }
         it { response.content_type.should == 'application/json' }
@@ -70,7 +72,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
             :refresh_token => 'invalid'
           }
 
-          post '/oauth2/token', params
+          post '/oauth2/token', params: params
         end
         it { response.code.to_i.should == 400 }
         it { response.content_type.should == 'application/json' }
@@ -96,7 +98,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
             :refresh_token => @refresh_token.token
           }
 
-          post '/oauth2/token', params
+          post '/oauth2/token', params: params
         end
         it { response.code.to_i.should == 400 }
         it { response.content_type.should == 'application/json' }
@@ -120,7 +122,7 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
             :refresh_token => @refresh_token.token
           }
 
-          post '/oauth2/token', params
+          post '/oauth2/token', params: params
         end
         it { response.code.to_i.should == 400 }
         it { response.content_type.should == 'application/json' }

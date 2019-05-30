@@ -27,13 +27,14 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>.freeze, ["> 4.0.0"])
-      s.add_runtime_dependency(%q<devise>.freeze, [">= 0"])
+      s.add_runtime_dependency(%q<rails>.freeze, ["> 5.2.0"])
+      s.add_runtime_dependency(%q<devise>.freeze, [">= 4.6"])
       s.add_runtime_dependency(%q<rack-oauth2>.freeze, [">= 0"])
-      s.add_development_dependency(%q<rspec-rails>.freeze, ["~> 2.14.2"])
+      s.add_development_dependency(%q<rspec-rails>.freeze, ["~> 3.6"])
       s.add_development_dependency(%q<shoulda-matchers>.freeze, [">= 0"])
       s.add_development_dependency(%q<shoulda-kept-assign-to>.freeze, [">= 0"])
-      s.add_development_dependency(%q<database_cleaner>.freeze, ["~> 1.3.0"])
+      s.add_development_dependency(%q<rails-controller-testing>.freeze, [">= 0"])
+      s.add_development_dependency(%q<database_cleaner>.freeze, ["~> 1.7.0"])
       s.add_development_dependency(%q<sqlite3>.freeze, [">= 0"])
       s.add_development_dependency(%q<pry>.freeze, [">= 0"])
       s.add_development_dependency(%q<factory_girl_rails>.freeze, [">= 0"])

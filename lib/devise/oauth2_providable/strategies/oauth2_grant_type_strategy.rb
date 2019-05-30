@@ -36,7 +36,6 @@ module Devise
         description = I18n.t("devise.failure.#{error_code}") unless description
         body[:error_description] = description if description
         custom! [400, {'Content-Type' => 'application/json'}, [body.to_json]]
-        throw :warden
       end
     end
   end

@@ -4,8 +4,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
   describe 'POST /oauth2/token' do
     describe 'with grant_type=authorization_code' do
       context 'with valid params' do
-        let(:user) { FactoryGirl.create :user }
-        let(:client) { FactoryGirl.create :client }
+        let(:user) { create :user }
+        let(:client) { create :client }
         before do
           @authorization_code = user.authorization_codes.create!(:client => client)
           params = {
@@ -34,8 +34,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         end
       end
       context 'with expired authorization_code' do
-        let(:user) { FactoryGirl.create :user }
-        let(:client) { FactoryGirl.create :client }
+        let(:user) { create :user }
+        let(:client) { create :client }
         before do
           timenow = 2.days.from_now
           Time.should_receive(:now).and_return(timenow)
@@ -62,8 +62,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         end
       end
       context 'with invalid authorization_code' do
-        let(:user) { FactoryGirl.create :user }
-        let(:client) { FactoryGirl.create :client }
+        let(:user) { create :user }
+        let(:client) { create :client }
         before do
           @authorization_code = user.authorization_codes.create(:client => client)
           params = {
@@ -86,8 +86,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         end
       end
       context 'with invalid client_secret' do
-        let(:user) { FactoryGirl.create :user }
-        let(:client) { FactoryGirl.create :client }
+        let(:user) { create :user }
+        let(:client) { create :client }
         before do
           @authorization_code = user.authorization_codes.create(:client => client)
           params = {
@@ -112,8 +112,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         end
       end
       context 'with invalid client_id' do
-        let(:user) { FactoryGirl.create :user }
-        let(:client) { FactoryGirl.create :client }
+        let(:user) { create :user }
+        let(:client) { create :client }
         before do
           @authorization_code = user.authorization_codes.create(:client => client)
           params = {

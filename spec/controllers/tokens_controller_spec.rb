@@ -4,8 +4,8 @@ describe Devise::Oauth2Providable::TokensController do
   routes { Devise::Oauth2Providable::Engine.routes }
 
   describe 'delete :destroy' do
-    let(:user) { FactoryGirl.create :user }
-    let(:client) { FactoryGirl.create :client }
+    let(:user) { create :user }
+    let(:client) { create :client }
     before do
       @token = Devise::Oauth2Providable::AccessToken.create! :client => client, :user => user
       @token_1 = Devise::Oauth2Providable::AccessToken.create! :client => client, :user => user
@@ -42,7 +42,7 @@ describe Devise::Oauth2Providable::TokensController do
         lambda {
           @request.env['HTTP_AUTHORIZATION'] = "Bearer #{@token.token}"
           get :index, params: { :access_token => @token.token, :format => 'json' }
-        }.should raise_error
+        }.should raise_error ActionController::UrlGenerationError
       end
     end
 

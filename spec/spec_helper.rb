@@ -6,7 +6,7 @@ require File.expand_path("dummy/config/environment.rb",  spec_root)
 require 'pry'
 require 'rspec/rails'
 require 'shoulda/matchers'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 require 'shoulda-kept-assign-to'
 require 'database_cleaner'
 require 'rails-controller-testing'
@@ -14,7 +14,7 @@ require 'rails-controller-testing'
 ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 
 RSpec.configure do |config|
-  # config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Rails::Controller::Testing::TemplateAssertions, type: :controller
 

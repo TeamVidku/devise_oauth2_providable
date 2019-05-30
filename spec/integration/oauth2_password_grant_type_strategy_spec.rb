@@ -4,7 +4,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
   describe 'POST /oauth2/token' do
     describe 'with grant_type=password' do
       context 'with valid params' do
-        let(:client) { FactoryGirl.create :client }
+        let(:client) { create :client }
         before do
           @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
 
@@ -27,7 +27,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with valid params and client id/secret in basic auth header' do
-        let(:client) { FactoryGirl.create :client }
+        let(:client) { create :client }
         before do
           @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
 
@@ -50,7 +50,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid client id in basic auth header' do
-        let(:client) { FactoryGirl.create :client }
+        let(:client) { create :client }
         before do
           @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
           params = {
@@ -72,7 +72,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid client secret in basic auth header' do
-        let(:client) { FactoryGirl.create :client }
+        let(:client) { create :client }
         before do
           @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
           params = {
@@ -94,7 +94,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid password' do
-        let(:client) { FactoryGirl.create :client }
+        let(:client) { create :client }
         before do
           @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
 
@@ -119,7 +119,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid client_id' do
-        let(:client) { FactoryGirl.create :client }
+        let(:client) { create :client }
         before do
           @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
 
@@ -144,7 +144,7 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid client_secret' do
-        let(:client) { FactoryGirl.create :client }
+        let(:client) { create :client }
         before do
           @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
 

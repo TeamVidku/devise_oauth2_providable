@@ -3,12 +3,15 @@ class Devise::Oauth2Providable::AccessToken < ActiveRecord::Base
 
   before_validation :restrict_expires_at, :on => :create, :if => :refresh_token
   belongs_to :refresh_token
+  belongs_to :client
 
   def token_response
     response = {
       :access_token => token,
       :token_type => 'bearer',
-      :expires_in => expires_in
+      :expires_in => expires_in,
+      :scope => client.scopes,
+      :user_id => user_id
     }
     response[:refresh_token] = refresh_token.token if refresh_token
     response

@@ -5,7 +5,10 @@ module Devise
 
       rescue_from Rack::OAuth2::Server::Authorize::BadRequest do |e|
         @error = e
-        render :error, :status => e.status
+        respond_to do |format|
+          format.html { render :error, :status => e.status }
+          format.json { render :json => { :error => e.message }, :status => e.status }
+        end
       end
 
       def new
@@ -22,10 +25,21 @@ module Devise
         ["WWW-Authenticate"].each do |key|
           headers[key] = header[key] if header[key].present?
         end
-        if response.redirect?
-          redirect_to header['Location']
-        else
-          render :new
+        respond_to do |format|
+          format.html do
+            if response.redirect?
+              redirect_to header['Location']
+            else
+              render :new
+            end
+          end
+          format.json do
+            if response.try :code
+              render json: { client_id: @client.id, code: response.code }
+            else
+              render json: { client_id: @client.id, name: @client.name, scopes: @client.scopes }
+            end
+          end
         end
       end
 

@@ -32,6 +32,7 @@ describe Devise::Oauth2Providable::AuthorizationsController do
         it { response.content_type.should eq 'application/json' }
         it 'matches json' do
           expected = {
+            :name => client.name,
             :client_id => client.id,
             :scopes => client.scopes
           }
@@ -99,10 +100,11 @@ describe Devise::Oauth2Providable::AuthorizationsController do
           request.headers['Accept'] = 'application/json'
           post :create, params: { :client_id => client.identifier, :redirect_uri => redirect_uri, response_type: 'code' }
         end
-        it { should respond_with :unauthorized }
+        it { should respond_with :ok }
         it { response.content_type.should eq 'application/json' }
         it 'matches json' do
           expected = {
+            :name => client.name,
             :client_id => client.id,
             :scopes => client.scopes
           }

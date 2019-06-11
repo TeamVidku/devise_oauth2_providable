@@ -37,7 +37,7 @@ module Devise
             if response.try :code
               render json: { client_id: @client.id, code: response.code }
             else
-              render json: { client_id: @client.id, scopes: @client.scopes }, status: :unauthorized
+              render json: { client_id: @client.id, name: @client.name, scopes: @client.scopes }
             end
           end
         end
